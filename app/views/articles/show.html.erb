@@ -1,0 +1,18 @@
+<div data-controller="video">
+<p style="color: green"><%= notice %></p>
+
+<%= render @article %>
+
+<div>
+<video id="player" playsinline controls>
+
+<% @article.videos.each do |video| %>
+<source src="<%= rails_blob_path(video) %> " size="<%=video.blob.metadata.fetch(:height, nil)%>" >
+<% end %>
+</video>
+  <%= link_to "Edit this article", edit_article_path(@article) %> |
+  <%= link_to "Back to articles", articles_path %>
+
+  <%= button_to "Destroy this article", @article, method: :delete %>
+</div>
+</div>
